@@ -1,22 +1,7 @@
 <?php
 /**
 	File:	Renderer.class.php
-	Definitions:
-		-->	Page
 **/
-
-class Page 
-{
-	private $page_location;
-	private $page_title;
-	
-	public function __construct($loc, $title) 
-	{
-		$this->page_location = $loc;
-		$this->page_title = $title;
-	}
-
-}
 
 class Renderer 
 {

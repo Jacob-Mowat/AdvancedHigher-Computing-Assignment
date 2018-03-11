@@ -3,9 +3,9 @@
 	File:	login.controller
 **/
 
-include_once "../../core/setup.php";
+require_once "../../core/setup.php";
 
-if($_POST['submit']) 
+if($_SERVER["REQUEST_METHOD"] == "POST") 
 {
 	try 
 	{
@@ -16,17 +16,20 @@ if($_POST['submit'])
 			$username, $password
 		);
 
-		if($Account->attemptLogin())
-		{
-			// $Account->login();
-			// $Account->init();
-			echo "dSUSSSS";
-		}
+		$Account->attachDatabase($Database);
+
+		print("hi");
+		$Account->attemptLogin();
+		print("Doooo");
 	} 
 	catch (Exception $e) 
 	{
 		// add exception stuff here
 	}
+} 
+else 
+{
+	return $Renderer->renderPage("home");
 }
 
 ?>

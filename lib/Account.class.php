@@ -8,7 +8,7 @@ class Account
 	protected $account_username;
 	private $account_password;
 
-	protected $account_databasePlug;
+	private $account_database;
 
 	public function __construct( $username, $password ) 
 	{
@@ -16,16 +16,27 @@ class Account
 		$this->password = trim($password);	//	<-- Hashing will be applied here
 	}
 
-	public function attachDatabasePlug($databasePlug)
+	function attachDatabase($database)
 	{
-		$this->account_databasePlug = $databasePlug;
+		$this->account_database = $database;
 	}
 
-	public function attemptLogin() 
+	function attemptLogin() 
 	{
-		$this->account_databasePlug->query(
-			"SELECT * FROM accounts WHERE username=($this->account_username) AND password=($this->account_password)");
-		return ($this->account_databasePlug->result().count() > 0 ? true : false );
+		$this->account_database->query("SELECT * FROM accounts WHERE username='$this->account_username' AND password='$this->account_password'");
+		$result = $this->account_database->fetch(PDO::FETCH_ASSOC);
+		if($result->rowCount() > 0)
+		{
+			print("dooooo");
+			$_SESSION["login_verified"] = true;
+			header("Location: http://kgscompsci.kirkwallgrammarschool.highercomputingscience.org/public/");
+		} 
+		else 
+		{
+			print("dooooo");
+			$_SESSION["login_verified"] = false;
+			header("Location: http://kgscompsci.kirkwallgrammarschool.highercomputingscience.org/public/");
+		}
 	}
 }
 
