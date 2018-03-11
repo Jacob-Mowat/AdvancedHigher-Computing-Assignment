@@ -17,14 +17,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		);
 
 		$Account->attachDatabase($Database);
+		if($Account->attemptLogin()) {}
 
-		print("hi");
-		$Account->attemptLogin();
-		print("Doooo");
+		header("Location: ../../public/index.php");
+		exit();
+
 	} 
 	catch (Exception $e) 
 	{
 		// add exception stuff here
+		exit();
 	}
 } 
 else 

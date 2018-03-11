@@ -19,7 +19,7 @@ defined("TEMPLATES_PATH")
 switch ($config["debug_mode"]) {
 	case true:
 		ini_set("error_reporting", "true");
-		error_reporting(E_ALL|E_STRCT);
+		error_reporting(E_ERROR | E_PARSE | E_STRCT);
 		break;
 	case false:
 		ini_set("error_reporting", "false");
