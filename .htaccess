@@ -1,1 +1,4 @@
+Options -Indexes
 
+RewriteEngine on
+RewriteRule ^(.*)\.[\d]{10}\.(css|js)$ $1.$2 [L]
