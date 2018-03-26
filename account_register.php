@@ -1,11 +1,10 @@
-<?php 
+<?php
 ob_start();
-include "autoload.php"; 
+include "autoload.php";
 ?>
 
 <?php
 if($_POST['submit']) {
-	print("printed");
 	$username_untrusted = trim(strip_tags(stripslashes($_POST['username'])));
 	$password_untrusted = trim(strip_tags(stripslashes($_POST['password'])));
 	$passwordconfirm_untrusted = trim(strip_tags(stripslashes($_POST['passwordconfirm'])));
@@ -15,14 +14,13 @@ if($_POST['submit']) {
 	$usertype_untrusted = trim(strip_tags(stripslashes($_POST['usertype'])));
 	$department_untrusted = trim(strip_tags(stripslashes($_POST['department'])));
 
-	print("finished 1");
 	if(Account::register(
-		$username_untrusted, 
-		$password_untrusted, 
-		$passwordconfirm_untrusted, 
-		$email_untrusted, 
-		$firstname_untrusted, 
-		$lastname_untrusted, 
+		$username_untrusted,
+		$password_untrusted,
+		$passwordconfirm_untrusted,
+		$email_untrusted,
+		$firstname_untrusted,
+		$lastname_untrusted,
 		$usertype_untrusted,
 		$department_untrusted,
 		$database_connection
@@ -30,10 +28,11 @@ if($_POST['submit']) {
 		$_SESSION['account'] = serialize(Account::getAccount($username_untrusted, $password_untrusted, $database_connection));
 		$_SESSION['account_loggedin'] = true;
 
-		exit(header('Location: dashboard.php'));
+		header('Location: dashboard.php');
+		exit;
 	} else {
-		print("register failed");
-		// exit(header('Location: account_register.php'));
+		header('Location: account_register.php');
+		exit;
 	}
 } else {
 ?>
@@ -76,7 +75,7 @@ if($_POST['submit']) {
 						<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
 					</div>
 				</div>
-				
+
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="usertype">Account Type</label>
