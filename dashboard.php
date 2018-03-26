@@ -7,6 +7,7 @@ if(empty($_SESSION['account_loggedin'])) {
 }
 
 $user = unserialize($_SESSION['account']);
+$userid = intval($user['id']);
 switch(intval($user['type'])) {
 	case 0:
 		$dashboard = 0;
@@ -45,7 +46,11 @@ getHeader();
 			<?php
 			$jobs = mysqli_query(
 				$database_connection,
-				"SELECT * FROM jobs WHERE status='assigned'"
+				"SELECT jobs.id, jobs.title, jobs.status, jobs.submitted_by, jobs.notes, assigned_jobs.id, assigned_jobs.technician_id, assigned_jobs.job_id
+                FROM jobs, assigned_jobs
+                WHERE jobs.status='assigned'
+                AND jobs.id=assigned_jobs.job_id
+                AND assigned_jobs.technician_id={$userid}"
 			);
 			?>
 			<table class="table">
@@ -59,11 +64,11 @@ getHeader();
 					</tr>
 				</thead>
 				<tbody>
-					<?php while($job = mysqli_fetch_array($jobs)) { 
+					<?php while($job = mysqli_fetch_array($jobs)) {
 						$username = Account::getUsernameByID($job['submitted_by'], $database_connection);
 						$fullname = Account::getFullnameByID($job['submitted_by'], $database_connection);
 					?>
-					<tr>
+					<tr  class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['id']}";?>">
 						<th scope="row"><?=$job['id'];?></th>
 						<td><?=$job['title'];?></td>
 						<td><?=$job['status'];?></td>

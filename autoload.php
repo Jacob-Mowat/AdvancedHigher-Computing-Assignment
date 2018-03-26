@@ -16,10 +16,10 @@ try {
 		$database_config["password"],
 		$database_config["database"]
 	);
-} catch (mysqli_sql_exception $e) { 
+} catch (mysqli_sql_exception $e) {
 	print $e->errorMessage();
-	throw $e; 
-} 
+	throw $e;
+}
 
 if(!isset($_SESSION['started'])) {
 	session_start();
