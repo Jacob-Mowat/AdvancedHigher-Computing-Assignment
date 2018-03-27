@@ -101,8 +101,8 @@ getHeader();
 			</ul>
 		</div>
 		<div class="col col-sm-8 mx-auto">
-			<h2>Your jobs for today:</h2>
-			<!-- Echo out all jobs for technicians-->
+			<h2></h2>
+
 		</div>
 	</div>
 </div>

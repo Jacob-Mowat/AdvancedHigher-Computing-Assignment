@@ -18,7 +18,7 @@ getHeader();
 	<div class="row">
 		<div class="col col-sm-12 mx-auto">
 			<?php
-			$q = mysqli_query($database_connection, "SELECT * FROM `jobs` WHERE department='{$userdepartment}'");
+			$q = mysqli_query($database_connection, "SELECT * FROM `jobs` WHERE department='{$userdepartment}' AND status!='closed'");
 			?>
 
 			<table class="table">
@@ -32,7 +32,7 @@ getHeader();
 					</tr>
 				</thead>
 				<tbody>
-					<?php while($row = mysqli_fetch_array($q)) { 
+					<?php while($row = mysqli_fetch_array($q)) {
 						$username = Account::getUsernameByID($row['submitted_by'], $database_connection);
 					?>
 					<tr>
