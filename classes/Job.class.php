@@ -10,9 +10,11 @@ class Job
 		$job_submittedby,
 		$dc
 	){
+		$job_note_formatted = Job::initalizeJobNotes($job_submittedby, $job_notes);
 		$q = mysqli_query(
 			$dc,
-			"INSERT INTO jobs (id, title, notes, status, department, submitted_by) VALUES (NULL, '{$job_title}', '{$job_notes}', '{$job_status}', '{$job_department}', '{$job_submittedby}')");
+			"INSERT INTO jobs (id, title, notes, status, department, submitted_by) VALUES (NULL, '{$job_title}', '{$job_note_formatted}', '{$job_status}', '{$job_department}', '{$job_submittedby}')"
+		);
 		return true;
 	}
 
@@ -41,24 +43,33 @@ class Job
 		return $note_time;
 	}
 
+	public static function initalizeJobNotes($username, $note) {
+		$notes_array = array();
+		array_push($notes_array, array(
+			"time" => time(),
+			"username" => $username,
+			"note" => $note
+		));
+		return serialize($notes_array);
+	}
+
 	public static function addNoteToJob($job_id, $username, $note, $database_connection) {
 		$job_notes_query = mysqli_query(
 			$database_connection,
 			"SELECT notes FROM jobs WHERE id={$job_id}"
 		);
-		$notes_array = $job_notes = mysqli_fetch_array($job_notes_query);
+		$notes_array = unserialize(mysqli_fetch_array($job_notes_query));
 		$note_holder = array(
 			"time" => time(),
 			"username" => $username,
 			"note" => $note
 		);
 		array_push($notes_array, $note_holder);
-		$wrapped = serialize($notes_array);
+		$ser = serialize($notes_array);
 		$note_query = mysqli_query(
 			$database_connection,
-			"INSERT INTO jobs (notes) VALUES ('{$wrapped}') WHERE id={$job_id}"
+			"INSERT INTO jobs (notes) VALUES ('{$ser}') WHERE id={$job_id}"
 		);
 	}
-
 }
 ?>
