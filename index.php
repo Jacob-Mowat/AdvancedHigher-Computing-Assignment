@@ -1,11 +1,4 @@
-<?php
-include_once "autoload.php";
-
-if(!empty($_SESSION['account_loggedin'])) {
-    header('Location: dashboard.php');
-    exit;
-}
-?>
+<?php include_once "autoload.php"; ?>
 
 <?php getHeader(); ?>
 The is the index file
