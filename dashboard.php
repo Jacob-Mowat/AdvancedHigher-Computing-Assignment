@@ -46,7 +46,7 @@ getHeader();
 			<?php
 			$jobs = mysqli_query(
 				$database_connection,
-				"SELECT jobs.id, jobs.title, jobs.status, jobs.submitted_by, jobs.notes, assigned_jobs.id, assigned_jobs.technician_id, assigned_jobs.job_id
+				"SELECT jobs.id AS jobid, jobs.title, jobs.status, jobs.submitted_by, jobs.notes, assigned_jobs.id, assigned_jobs.technician_id, assigned_jobs.job_id
                 FROM jobs, assigned_jobs
                 WHERE jobs.status='assigned'
                 AND jobs.id=assigned_jobs.job_id
@@ -67,13 +67,14 @@ getHeader();
 					<?php while($job = mysqli_fetch_array($jobs)) {
 						$username = Account::getUsernameByID($job['submitted_by'], $database_connection);
 						$fullname = Account::getFullnameByID($job['submitted_by'], $database_connection);
+                        $note = mb_strimwidth(Job::processNotes($job['notes'])[0][2], 0, 20, "...");
 					?>
-					<tr  class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['id']}";?>">
-						<th scope="row"><?=$job['id'];?></th>
+					<tr  class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['jobid']}";?>">
+						<th scope="row"><?=$job['jobid'];?></th>
 						<td><?=$job['title'];?></td>
 						<td><?=$job['status'];?></td>
 						<td><?=$username;?> (<?=$fullname;?>)</td>
-						<td><?=$job['notes'];?></td>
+						<td><?=$note?></td>
 					</tr>
 					<?php } ?>
 				</tbody>

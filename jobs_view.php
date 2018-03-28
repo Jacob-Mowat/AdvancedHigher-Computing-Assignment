@@ -8,27 +8,18 @@ if(empty($_SESSION['account_loggedin'])) {
 
 $user = unserialize($_SESSION['account']);
 
-if($_POST['submit']) {
-	$job_title = $_POST['job_title'];
-	$job_notes = $_POST['job_notes'];
-	$job_status = "opened";
-	$job_department = $_POST['job_department'];
-	$job_submittedby = intval($user['id']);
+if(!empty($_GET['id'])) {
+    $jobid = $_GET['id'];
+    $job_query = mysqli_query(
+        $database_connection,
+        "SELECT * from jobs WHERE id='{$jobid}'"
+    );
 
-	if(Job::createJob(
-		$job_title,
-		$job_notes,
-		$job_status,
-		$job_department,
-		$job_submittedby,
-		$database_connection
-	)) {
-		header("Location: dashboard.php");
-		exit;
-	} else {
-		header("Location: jobs_create.php");
-		exit;
-	}
+    $job = $job_query->fetch_array(MYSQLI_ASSOC);
+    $notes = Job::processNotes($job['notes']);   // Process the notes into an array.
+} else {
+    header("Location: dashboard.php");
+    exit;
 }
 
 getHeader();
@@ -36,28 +27,52 @@ getHeader();
 
 <div class="container">
 	<div class="row">
-		<div class="col col-sm-8 mx-auto">
-			<h1>Add Job</h1>
-
-			<form action="jobs_create.php" method="post" autocomplete="off">
-				<div class="form-group">
-					<label for="job_title">Title</label>
-			    	<input type="text" class="form-control" name="job_title" id="job_title" placeholder="Title">
-				</div>
-				<div class="form-group">
-					<label for="job_notes">Job Notes</label>
-			    	<textarea class="form-control" name="job_notes" id="job_notes" placeholder="Notes"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="job_department">Department</label>
-					<select class="form-control" id="job_department" name="job_department" size="8">
-						<?php foreach (Account::$departments_list as $key => $value) { ?>
-							<option value="<?=$key?>"><?=$value?></option>
-						<?php } ?>
-					</select>
-				</div>
-				<input type="submit" name="submit" class="btn btn-primary" value="Create Job" />
-			</form>
+		<div class="col col-sm-12">
+            <div class="row">
+                <div class="col col-sm-6">
+                    <ul class="list-group">
+                        <h2><?=$job['title']?></h2>
+        				<li class="list-group-item">
+        					Status: <?=$job['status']?>
+        				</li>
+        				<li class="list-group-item">
+        					Department: <?=$job['department']?>
+        				</li>
+        			</ul>
+                </div>
+                <div class="col col-sm-6">
+                    <br>
+                    <br>
+                    <div class="list-group">
+                        <?php foreach($notes as $note) { ?>
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><?=$note[1]?></h5>
+                            <small><?=Job::processNoteTime($note[0])?></small>
+                        </div>
+                        <p class="mb-1"><?=$note[2]?></p>
+                        <!-- <small>N/A</small> -->
+                        </a>
+                        <?php } ?>
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <!-- <h5 class="mb-1">Sen</h5>
+                            <small><?=Job::processNoteTime($note[0])?></small> -->
+                        </div>
+                        <p class="mb-1">
+                        <form action="jobs_create.php" method="post" autocomplete="off">
+            				<div class="form-group">
+            					<label for="job_notes"></label>
+            			    	<textarea class="form-control" name="job_notes" id="job_notes" placeholder="Notes"></textarea>
+            				</div>
+            				<input type="submit" name="submit" class="btn btn-primary" value="Send" />
+            			</form>
+                        </p>
+                        <!-- <small>N/A</small> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 </div>

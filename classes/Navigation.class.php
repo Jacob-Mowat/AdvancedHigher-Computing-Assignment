@@ -13,7 +13,7 @@ class Navigation {
 				<a class="nav-link" href="technician_completed.php">Completed Jobs</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="account_logout.php">Logout</a>
+				<a class="nav-link" href="account_logout.php">Logout <i class="fas fa-sign-out-alt"></i></a>
 			</li>
 		';
 	}
@@ -30,7 +30,7 @@ class Navigation {
 				<a class="nav-link" href="account_mydepartment.php">My Department</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="account_logout.php">Logout</a>
+				<a class="nav-link" href="account_logout.php">Logout <i class="fas fa-sign-out-alt"></i></a>
 			</li>
 		';
 	}
@@ -50,7 +50,7 @@ class Navigation {
 				<a class="nav-link" href="manager_listassignedjobs.php">Assigned Jobs</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="account_logout.php">Logout</a>
+				<a class="nav-link" href="account_logout.php">Logout <i class="fas fa-sign-out-alt"></i></a>
 			</li>
 		';
 	}

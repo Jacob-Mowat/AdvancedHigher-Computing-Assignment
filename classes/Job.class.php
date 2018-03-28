@@ -1,5 +1,5 @@
 <?php
-class Job 
+class Job
 {
 
 	public static function createJob(
@@ -11,7 +11,7 @@ class Job
 		$dc
 	){
 		$q = mysqli_query(
-			$dc, 
+			$dc,
 			"INSERT INTO jobs (id, title, notes, status, department, submitted_by) VALUES (NULL, '{$job_title}', '{$job_notes}', '{$job_status}', '{$job_department}', '{$job_submittedby}')");
 		return true;
 	}
@@ -31,6 +31,23 @@ class Job
 			"UPDATE `jobs` SET status='assigned' WHERE id='{$job_id}'"
 		);
 		return true;
+	}
+
+	public static function processNotes($notes) {
+		/*	Format of Notes:
+		date||||username||||note
+		------
+		*/
+		$notes_partitoned = split('------', $notes);
+		$notes = array();
+		foreach ($notes_partitoned as $note) {
+			array_push($notes, explode("||||", $note));
+		}
+		return $notes;
+	}
+
+	public static function processNoteTime($note_time) {
+		return $note_time;
 	}
 
 }
