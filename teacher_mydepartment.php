@@ -18,9 +18,9 @@ getHeader();
 	<div class="row">
 		<div class="col col-sm-12 mx-auto">
 			<?php
-			$q = mysqli_query($database_connection, "SELECT * FROM `jobs` WHERE department='{$userdepartment}' AND status!='closed'");
+			$jobs = mysqli_query($database_connection, "SELECT * FROM `jobs` WHERE department='{$userdepartment}' AND status!='closed'");
 			?>
-			<table class="table">
+            <table class="table">
 				<thead>
 					<tr>
 						<th scope="col">ID</th>
@@ -31,15 +31,17 @@ getHeader();
 					</tr>
 				</thead>
 				<tbody>
-					<?php while($row = mysqli_fetch_array($q)) {
-						$username = Account::getUsernameByID($row['submitted_by'], $database_connection);
+					<?php while($job = mysqli_fetch_array($jobs)) {
+						$username = Account::getUsernameByID($job['submitted_by'], $database_connection);
+						$fullname = Account::getFullnameByID($job['submitted_by'], $database_connection);
+                        $note = mb_strimwidth(Job::processNotes($job['notes'])[0][2], 0, 20, "...");
 					?>
-					<tr>
-						<th scope="row"><?=$row['id'];?></th>
-						<td><?=$row['title'];?></td>
-						<td><?=$row['status'];?></td>
-						<td><?=$username;?></td>
-						<td><?=$row['notes'];?></td>
+					<tr class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['jobid']}";?>">
+						<th scope="row"><?=$job['jobid'];?></th>
+						<td><?=$job['title'];?></td>
+						<td><?=$job['status'];?></td>
+						<td><?=$username;?> (<?=$fullname;?>)</td>
+						<td><?=$note?></td>
 					</tr>
 					<?php } ?>
 				</tbody>

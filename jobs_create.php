@@ -19,7 +19,7 @@ if($_POST['submit']) {
 		$job_title,
 		$job_notes,
 		$job_status,
-		$job_department,
+		$job_department, 
 		$job_submittedby,
 		$database_connection
 	)) {

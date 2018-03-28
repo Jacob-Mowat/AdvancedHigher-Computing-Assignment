@@ -8,6 +8,11 @@ if(empty($_SESSION['account_loggedin'])) {
 
 $user = unserialize($_SESSION['account']);
 
+if($_POST['submit_newnote']) {
+    $newnote = $_POST['newnote'];
+    Job::addNoteToJob($_GET['id'], $user['username'], $newnote, $database_connection);
+}
+
 if(!empty($_GET['id'])) {
     $jobid = $_GET['id'];
     $job_query = mysqli_query(
@@ -16,13 +21,6 @@ if(!empty($_GET['id'])) {
     );
 
     $job = $job_query->fetch_array(MYSQLI_ASSOC);
-
-    if($_POST['submit_newnote']) {
-        $newnote = $_POST['newnote'];
-
-        Job::addNoteToJob($jobid, $user['username'], $newnote, $database_connection);
-    }
-
     $notes = Job::processNotes($job['notes']);   // Process the notes into an array.
 } else {
     header("Location: dashboard.php");
@@ -54,25 +52,22 @@ getHeader();
                         <?php foreach($notes as $note) { ?>
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><?=$note[1]?></h5>
-                            <small><?=Job::processNoteTime($note[0])?></small>
+                            <h5 class="mb-1"><?=$note['username']?></h5>
+                            <small><?=$note['time']?></small>
                         </div>
-                        <p class="mb-1"><?=$note[2]?></p>
+                        <p class="mb-1"><?=$note['note']?></p>
                         </a>
                         <?php } ?>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <small><?=Job::processNoteTime($note[0])?></small> -->
-                        </div>
-                        <p class="mb-1">
-                            <form action="jobs_view.php" method="post" autocomplete="off">
-                				<div class="form-group">
-                					<label for="newnote"></label>
-                			    	<textarea class="form-control" name="newnote" id="newnote" placeholder="Notes"></textarea>
-                				</div>
-                				<input type="submit" name="submit_newnote" class="btn btn-primary" value="Send" />
-                			</form>
-                        </p>
+                        <a href="#" disabled class="list-group-item list-group-item-action flex-column align-items-start">
+                            <p class="mb-1">
+                                <form action="jobs_view.php?id=<?=$jobid?>" method="post" autocomplete="off">
+                    				<div class="form-group">
+                    					<label for="newnote"></label>
+                    			    	<textarea class="form-control" name="newnote" id="newnote" placeholder="Notes"></textarea>
+                    				</div>
+                    				<input type="submit" name="submit_newnote" class="btn btn-primary" value="Send" />
+                    			</form>
+                            </p>
                         </a>
                     </div>
                 </div>
