@@ -20,7 +20,6 @@ getHeader();
 			<?php
 			$q = mysqli_query($database_connection, "SELECT * FROM `jobs` WHERE department='{$userdepartment}' AND status!='closed'");
 			?>
-
 			<table class="table">
 				<thead>
 					<tr>

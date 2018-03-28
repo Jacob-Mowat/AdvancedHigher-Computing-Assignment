@@ -25,8 +25,11 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav">
-			<?php
-			if ($_SESSION['account_loggedin']) {
+			<?php if ($_SESSION['account_loggedin']) { ?>
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard<!-- <span class="sr-only">(current)</span> --></a>
+            </li>
+            <?php
 				switch(intval(unserialize($_SESSION['account'])['type'])) {
 					case 0:
 						Navigation::getTechnicalNavigation();
@@ -40,17 +43,17 @@
 					case 3:
 						exit(header("Location: admin_dashboard.php"));
 				}
-			} else {
-				?>
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home <!-- <span class="sr-only">(current)</span> --></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="account_login.php"><i class="fas fa-user-circle"></i>Login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="account_register.php">Register</a>
-				</li>
+            ?>
+            <li class="nav-item" class="float-right">
+				<a class="nav-link" href="account_logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+			</li>
+			<?php } else { ?>
+			<li class="nav-item active">
+				<a class="nav-link" href="#"><i class="fas fa-home"></i> Home <!-- <span class="sr-only">(current)</span> --></a>
+			</li>
+			<li class="nav-item" class="float-right">
+				<a class="nav-link" href="account_loginregister.php"><i class="fas fa-user-circle"></i>Login / Register</a>
+			</li>
 			<?php } ?>
 		</ul>
 	</div>

@@ -23,7 +23,7 @@ getHeader();
 			<?php
             $jobs = mysqli_query(
 				$database_connection,
-				"SELECT jobs.id, jobs.title, jobs.status, jobs.submitted_by, jobs.notes, assigned_jobs.id, assigned_jobs.technician_id, assigned_jobs.job_id
+				"SELECT jobs.id AS jobid, jobs.title, jobs.submitted_by, jobs.notes, assigned_jobs.id, assigned_jobs.technician_id, assigned_jobs.job_id
                 FROM jobs, assigned_jobs
                 WHERE jobs.status='closed'
                 AND jobs.id=assigned_jobs.job_id
@@ -38,7 +38,6 @@ getHeader();
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">Title</th>
-						<th scope="col">Status</th>
 						<th scope="col">Submitted By</th>
 						<th scope="col">Notes</th>
 						<th scope="col">Closed On</th>
@@ -47,23 +46,23 @@ getHeader();
 				<tbody>
 					<?php while($job = mysqli_fetch_array($jobs)) {
 						$username = Account::getUsernameByID($job['submitted_by'], $database_connection);
+                        $note = mb_strimwidth(Job::processNotes($job['notes'])[0][2], 0, 20, "...");
 					?>
-					<tr>
+					<tr class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['jobid']}";?>">
 						<th scope="row"><?=$job['id'];?></th>
 						<td><?=$job['title'];?></td>
-						<td><?=$job['status'];?></td>
 						<td><?=$username;?></td>
-						<td><?=$job['notes'];?></td>
+						<td><?=$note?></td>
 						<td><?=$job['completed_time'];?></td>
 					</tr>
-					<?php } ?>
-                    <?php
-                    if(mysql_num_rows($jobs) < 1) {
-                        echo "<tr><p>You haven't completed any jobs yet...</p></tr>";
-                    }
-                    ?>
+                <?php } ?>
 				</tbody>
 			</table>
+            <?php
+            if($jobs->num_rows < 1) {
+                echo "<tr><td>You haven't completed any jobs yet...</td></tr>";
+            }
+            ?>
 		</div>
 	</div>
 </div>

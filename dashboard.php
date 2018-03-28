@@ -69,7 +69,7 @@ getHeader();
 						$fullname = Account::getFullnameByID($job['submitted_by'], $database_connection);
                         $note = mb_strimwidth(Job::processNotes($job['notes'])[0][2], 0, 20, "...");
 					?>
-					<tr  class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['jobid']}";?>">
+					<tr class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['jobid']}";?>">
 						<th scope="row"><?=$job['jobid'];?></th>
 						<td><?=$job['title'];?></td>
 						<td><?=$job['status'];?></td>

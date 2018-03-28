@@ -34,20 +34,30 @@ class Job
 	}
 
 	public static function processNotes($notes) {
-		/*	Format of Notes:
-		date||||username||||note
-		------
-		*/
-		$notes_partitoned = split('------', $notes);
-		$notes = array();
-		foreach ($notes_partitoned as $note) {
-			array_push($notes, explode("||||", $note));
-		}
-		return $notes;
+		return unserialize($notes);
 	}
 
 	public static function processNoteTime($note_time) {
 		return $note_time;
+	}
+
+	public static function addNoteToJob($job_id, $username, $note, $database_connection) {
+		$job_notes_query = mysqli_query(
+			$database_connection,
+			"SELECT notes FROM jobs WHERE id={$job_id}"
+		);
+		$notes_array = $job_notes = mysqli_fetch_array($job_notes_query);
+		$note_holder = array(
+			"time" => time(),
+			"username" => $username,
+			"note" => $note
+		);
+		array_push($notes_array, $note_holder);
+		$wrapped = serialize($notes_array);
+		$note_query = mysqli_query(
+			$database_connection,
+			"INSERT INTO jobs (notes) VALUES ('{$wrapped}') WHERE id={$job_id}"
+		);
 	}
 
 }
