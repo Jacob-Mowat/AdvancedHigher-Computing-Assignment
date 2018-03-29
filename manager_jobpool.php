@@ -40,15 +40,16 @@ getHeader();
 					</tr>
 				</thead>
 				<tbody>
-					<?php while($job = mysqli_fetch_array($jobs)) { 
+					<?php while($job = mysqli_fetch_array($jobs)) {
 						$username = Account::getUsernameByID($job['submitted_by'], $database_connection);
+                        $note = mb_strimwidth(Job::processNotes($job['notes'])[0]['note'], 0, 20, "...");
 					?>
 					<tr>
 						<th scope="row"><?=$job['id'];?></th>
 						<td><?=$job['title'];?></td>
 						<td><?=$job['status'];?></td>
 						<td><?=$username;?></td>
-						<td><?=$job['notes'];?></td>
+						<td><?=$note?></td>
 						<td><a href="manager_assignjob.php?id=<?=$job['id'];?>"> assign </a></td>
 					</tr>
 					<?php } ?>
