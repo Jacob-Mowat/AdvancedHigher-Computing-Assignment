@@ -18,7 +18,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-custom navbar-dark">
 	<a class="navbar-brand" href="/">KGS Ticket</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
 				<a class="nav-link" href="#"><i class="fas fa-home"></i> Home <!-- <span class="sr-only">(current)</span> --></a>
 			</li>
 			<li class="nav-item" class="float-right">
-				<a class="nav-link" href="account_loginregister.php"><i class="fas fa-user-circle"></i>Login / Register</a>
+				<a class="nav-link" href="account_loginregister.php"><i class="fas fa-user-circle"></i> Login / Register</a>
 			</li>
 			<?php } ?>
 		</ul>
