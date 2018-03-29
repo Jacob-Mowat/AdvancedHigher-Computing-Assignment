@@ -6,6 +6,13 @@ if(empty($_SESSION['account_loggedin'])) {
     exit;
 }
 
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Make this page only available to;
+-> (ALL) ACCOUNT_MANAGER
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+
 $user = unserialize($_SESSION['account']);
 
 if(intval($user['type']) != ACCOUNT_MANAGER) {
@@ -52,7 +59,7 @@ if($_POST['submit']) {
 			);
 			?>
 
-			<form action="manager_assignjob.php" method="post" autocomplete="off">	
+			<form action="manager_assignjob.php" method="post" autocomplete="off">
 				<div class="form-row">
 					<input type="hidden" name="manager_id" value="<?=$user['id'];?>">
 					<input type="hidden" name="job_id" value="<?=$_GET['id'];?>">

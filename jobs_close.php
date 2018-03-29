@@ -6,27 +6,32 @@ if(empty($_SESSION['account_loggedin'])) {
     exit;
 }
 
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Make this page only available to ACCOUNT_TECHNICIAN and ACCOUNT_MANAGER
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+
 $user = unserialize($_SESSION['account']);
 
-if($_POST['submit_closejob']) {
-	$job_title = $_POST['job_title'];
-	$job_notes = $_POST['job_notes'];
-	$job_status = "opened";
-	$job_department = $_POST['job_department'];
-	$job_submittedby = intval($user['id']);
+if($_GET['id']) {
+    $job_id = $_GET['id'];
+} else {
+    header("Location: dashboard.php");
+    exit;
+}
 
-	if(Job::createJob(
-		$job_title,
-		$job_notes,
-		$job_status,
-		$job_department,
-		$job_submittedby,
+if($_POST['submit_closejob']) {
+
+	if(Job::closeJob(
+		$job_id,
+        $user['username'],
 		$database_connection
 	)) {
 		header("Location: dashboard.php");
 		exit;
 	} else {
-		header("Location: jobs_create.php");
+		header("Location: jobs_close.php?id=".$job_id);
 		exit;
 	}
 }
@@ -39,24 +44,9 @@ getHeader();
 		<div class="col col-sm-8 mx-auto">
 			<h1>Close Job</h1>
 
-			<form action="jobs_create.php" method="post" autocomplete="off">
-				<div class="form-group">
-					<label for="job_title">Title</label>
-			    	<input type="text" disabled class="form-control" name="job_title" id="job_title" placeholder="Title">
-				</div>
-				<div class="form-group">
-					<label for="job_notes">Job Notes</label>
-			    	<textarea class="form-control" name="job_notes" id="job_notes" placeholder="Notes"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="job_department">Department</label>
-					<select class="form-control" id="job_department" name="job_department" size="8">
-						<?php foreach (Account::$departments_list as $key => $value) { ?>
-							<option value="<?=$key?>"><?=$value?></option>
-						<?php } ?>
-					</select>
-				</div>
-				<input type="submit" name="submit" class="btn btn-primary" value="Create Job" />
+			<form action="jobs_close.php?id=<?=$job_id?>" method="post" autocomplete="off">
+				<p>Are you sure you want to close this job?</p>
+				<input type="submit" name="submit_closejob" class="btn btn-primary" value="Yes" />
 			</form>
 		</div>
 	</div>

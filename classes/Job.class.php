@@ -47,7 +47,7 @@ class Job
 	public static function initalizeJobNotes($username, $note) {
 		$notes_array = array();
 		$tmp = array(
-			"time" => time(),
+			"time" => date("jS F, Y")." at ".date("h:ia"),
 			"username" => $username,
 			"note" => $note
 		);
@@ -62,7 +62,7 @@ class Job
 		);
 		$notes_array = unserialize($job_notes_query->fetch_array(MYSQLI_ASSOC)['notes']);
 		$note_holder = array(
-			"time" => time(),
+			"time" => date("jS F, Y")." at ".date("h:ia"),
 			"username" => $username,
 			"note" => $note
 		);
@@ -72,6 +72,16 @@ class Job
 			$database_connection,
 			"UPDATE jobs SET notes='{$ser}' WHERE id={$job_id}"
 		);
+	}
+
+	public static function closeJob($id, $username, $dc) {
+		$dateTimeVariable = date("jS F, Y")." at ".date("h:ia");
+		$query = mysqli_query(
+			$dc,
+			"UPDATE jobs SET status='closed', completed_time='{$dateTimeVariable}' WHERE id={$id}"
+		);
+		Job::addNoteToJob($id, $username, "( Job Closed )", $dc);
+		return true;
 	}
 }
 ?>

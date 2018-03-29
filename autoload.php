@@ -26,6 +26,8 @@ if(!isset($_SESSION['started'])) {
 	$_SESSION['started'] = true;
 }
 
+date_default_timezone_set(DateTimeZone::listIdentifiers(DateTimeZone::UTC)[0]);
+
 define("ACCOUNT_TEACHER", 1);
 define("ACCOUNT_TECHNICIAN", 0);
 define("ACCOUNT_MANAGER", 2);

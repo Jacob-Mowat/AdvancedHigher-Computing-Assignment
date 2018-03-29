@@ -6,6 +6,15 @@ if(empty($_SESSION['account_loggedin'])) {
     exit;
 }
 
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Make this page only available to;
+-> (ALL) ACCOUNT_MANAGER
+-> (jobs.submitted_by) ACCOUNT_TEACHER
+-> (assigned_jobs.technician_id) ACCOUNT_TECHNICIAN
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+
 $user = unserialize($_SESSION['account']);
 
 if($_POST['submit_newnote']) {
