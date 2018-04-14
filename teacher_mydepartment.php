@@ -34,7 +34,7 @@ getHeader();
 					<?php while($job = mysqli_fetch_array($jobs)) {
 						$username = Account::getUsernameByID($job['submitted_by'], $database_connection);
 						$fullname = Account::getFullnameByID($job['submitted_by'], $database_connection);
-                        $note = mb_strimwidth(Job::processNotes($job['notes'])[0][2], 0, 20, "...");
+                        $note = mb_strimwidth(Job::processNotes($job['notes'])[0]['note'], 0, 20, "...");
 					?>
 					<tr class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['jobid']}";?>">
 						<th scope="row"><?=$job['jobid'];?></th>

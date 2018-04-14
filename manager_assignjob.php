@@ -23,9 +23,9 @@ if(intval($user['type']) != ACCOUNT_MANAGER) {
 getHeader();
 
 if($_POST['submit']) {
-	$job_id = intval($_POST['job_id']);
-	$manager_id = intval($_POST['manager_id']);
-	$technician_id = intval($_POST['technician_id']);
+	$job_id = intval(XSSStrip($_POST['job_id']));
+	$manager_id = intval(XSSStrip($_POST['manager_id']));
+	$technician_id = intval(XSSStrip($_POST['technician_id']));
 
 	if(Job::assignJob(
 		$job_id,
@@ -62,7 +62,7 @@ if($_POST['submit']) {
 			<form action="manager_assignjob.php" method="post" autocomplete="off">
 				<div class="form-row">
 					<input type="hidden" name="manager_id" value="<?=$user['id'];?>">
-					<input type="hidden" name="job_id" value="<?=$_GET['id'];?>">
+					<input type="hidden" name="job_id" value="<?=XSSStrip($_GET['id']);?>">
 					<div class="form-group col-md-12">
 						<label for="technician_id">Pick a technician</label>
 						<select class="form-control" name="technician_id" id="technician_id" size="3">
@@ -79,4 +79,4 @@ if($_POST['submit']) {
 	</div>
 </div>
 
-<?php getFooter(); ?>.
+<?php getFooter(); ?>

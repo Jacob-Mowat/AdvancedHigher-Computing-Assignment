@@ -18,12 +18,12 @@ Make this page only available to;
 $user = unserialize($_SESSION['account']);
 
 if($_POST['submit_newnote']) {
-    $newnote = $_POST['newnote'];
-    Job::addNoteToJob($_GET['id'], $user['username'], $newnote, $database_connection);
+    $newnote = XSSStrip($_POST['newnote']);
+    Job::addNoteToJob(XSSStrip($_GET['id']), $user['username'], $newnote, $database_connection);
 }
 
 if(!empty($_GET['id'])) {
-    $jobid = $_GET['id'];
+    $jobid = XSSStrip($_GET['id']);
     $job_query = mysqli_query(
         $database_connection,
         "SELECT * from jobs WHERE id='{$jobid}'"

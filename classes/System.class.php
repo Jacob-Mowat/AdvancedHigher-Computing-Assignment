@@ -23,4 +23,8 @@ function auto_version($file)
   $mtime = filemtime($_SERVER['DOCUMENT_ROOT'] . $file);
   return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
 }
+
+function XSSStrip($var) {
+	return trim(strip_tags(stripslashes($var)));
+}
 ?>

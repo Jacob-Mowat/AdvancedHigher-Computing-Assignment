@@ -15,7 +15,7 @@ Make this page only available to ACCOUNT_TECHNICIAN and ACCOUNT_MANAGER
 $user = unserialize($_SESSION['account']);
 
 if($_GET['id']) {
-    $job_id = $_GET['id'];
+    $job_id = XSSStrip($_GET['id']);
 } else {
     header("Location: dashboard.php");
     exit;

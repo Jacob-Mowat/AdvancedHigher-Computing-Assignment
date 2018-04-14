@@ -9,17 +9,17 @@ if(empty($_SESSION['account_loggedin'])) {
 $user = unserialize($_SESSION['account']);
 
 if($_POST['submit']) {
-	$job_title = $_POST['job_title'];
-	$job_notes = $_POST['job_notes'];
+	$job_title = XSSStrip($_POST['job_title']);
+	$job_notes = XSSStrip($_POST['job_notes']);
 	$job_status = "opened";
-	$job_department = $_POST['job_department'];
+	$job_department = XSSStrip($_POST['job_department']);
 	$job_submittedby = intval($user['id']);
 
 	if(Job::createJob(
 		$job_title,
 		$job_notes,
 		$job_status,
-		$job_department, 
+		$job_department,
 		$job_submittedby,
 		$database_connection
 	)) {

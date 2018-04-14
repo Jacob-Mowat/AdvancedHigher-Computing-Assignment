@@ -59,4 +59,4 @@ getHeader();
 	</div>
 </div>
 
-<?php getFooter(); ?>.
+<?php getFooter(); ?>

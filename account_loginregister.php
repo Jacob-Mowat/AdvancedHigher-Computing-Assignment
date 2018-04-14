@@ -5,8 +5,8 @@ include "autoload.php";
 
 <?php
 if($_POST['submit_login']) {
-	$username_untrusted = trim(strip_tags(stripslashes($_POST['username'])));
-	$password_untrusted = trim(strip_tags(stripslashes($_POST['password'])));
+	$username_untrusted = XSSStrip($_POST['username']);
+	$password_untrusted = XSSStrip($_POST['password']);
 
 	if(Account::login($username_untrusted, $password_untrusted, $database_connection)) {
 		$_SESSION['account'] = serialize(Account::getAccount($username_untrusted, $password_untrusted, $database_connection));
@@ -16,14 +16,14 @@ if($_POST['submit_login']) {
 		exit(header('Location: account_login.php'));
 	}
 } else if ($_POST['submit_register']) {
-    $username_untrusted = trim(strip_tags(stripslashes($_POST['username'])));
-	$password_untrusted = trim(strip_tags(stripslashes($_POST['password'])));
-	$passwordconfirm_untrusted = trim(strip_tags(stripslashes($_POST['passwordconfirm'])));
-	$email_untrusted = trim(strip_tags(stripslashes($_POST['email'])));
-	$firstname_untrusted = trim(strip_tags(stripslashes($_POST['firstname'])));
-	$lastname_untrusted = trim(strip_tags(stripslashes($_POST['lastname'])));
-	$usertype_untrusted = trim(strip_tags(stripslashes($_POST['usertype'])));
-	$department_untrusted = trim(strip_tags(stripslashes($_POST['department'])));
+    $username_untrusted = XSSStrip($_POST['username']);
+	$password_untrusted = XSSStrip($_POST['password']);
+	$passwordconfirm_untrusted = XSSStrip($_POST['passwordconfirm']);
+	$email_untrusted = XSSStrip($_POST['email']);
+	$firstname_untrusted = XSSStrip($_POST['firstname']);
+	$lastname_untrusted = XSSStrip($_POST['lastname']);
+	$usertype_untrusted = XSSStrip($_POST['usertype']);
+	$department_untrusted = XSSStrip($_POST['department']);
 
 	if(Account::register(
 		$username_untrusted,
