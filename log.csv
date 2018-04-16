@@ -1,0 +1,19 @@
+0309153,Jacob-Mowat,2 minutes ago,- Removed Technician column from Teacher dashboard - Fixed query again.
+7a0d335,Jacob-Mowat,5 minutes ago,- Fixed SQL Query for job history of Teacher dashboard
+5c1d822,Jacob Mowat,7 hours ago,Merge branch 'development'
+96b6a1d,Jacob Mowat,7 hours ago,- Added manager dashboard - Updated Manager navigation bar
+be9615c,Jacob Mowat,8 hours ago,- Added new dashboard panel for Teacher accounts - showing past and current jobs, showing the technician that handled each job.
+7c19ff8,Jacob Mowat,2 days ago,- Added XSSStrip function to help reduce XSS vulnerabilities - Fixed XSS on jobs_create - Fixed XSS on jobs_view - Fixed XSS on account_loginregister - Fixed XSS on jobs_close - Fixed XSS on manager_assignjob - Removed random '.' from manager_jobpool - Added newline at end of index page - Added note to add new section to Teacher dashboard - Fixed notes listing on teacher_mydepartment
+a020ee7,Jacob-Mowat,2 weeks ago,- Added closeJob function - Fixed timestamps within jobs/notes - Fixed technician_completed page
+aa677a0,Jacob-Mowat,3 weeks ago,- Fixed technitions dashboard, wasn't showing trimmed version of first note of each job: does now. - Fixed the unserialized and untrimmed first note in the job pool for managers: now is unserialized and shows trimmed version of first note.
+9438016,Jacob-Mowat,3 weeks ago,- Fixed spacing on "Login/Register" with icon in header - Removed old account_login and account_register php files.
+c85fb68,Jacob Mowat,3 weeks ago,- Added messaging for the job (only problem is that any user can goto the page and comment) - Fixed serializing data for messages - Fixed 'my department' notes column and applied a limit to how much text shows - Added initalizing of serialized notes when creating jobs
+1738934,Jacob Mowat,3 weeks ago,- fixed inital notes query when making jobs - uses serialized arrays now
+92bcd39,Jacob Mowat,3 weeks ago,- Added new notes system - Added feature to add new notes - Added new icons for the header
+3c4ed20,Jacob-Mowat,3 weeks ago,- fixed jobs_view.php - added new formating for 'notes' in jobs: intergrated message board system.
+544cccd,Jacob Mowat,3 weeks ago,Added 'jobs_view' page and fixed teachers 'my department' page
+a0710d6,Jacob-Mowat,3 weeks ago,Small update
+c2bc534,Jacob-Mowat,3 weeks ago,updated .clickable-row css
+6bf671f,Jacob-Mowat,3 weeks ago,- Fixed dashboard for technicians so that it only shows jobs assigned to them and that are assigned. - Added completed jobs page for technicians so they have a record view of all their previous work. - Added clickable rows. to goto a jobs_view.php file yet to be implemented in next revision.
+6a2c6d4,Jacob-Mowat,3 weeks ago,Removed comments
+f8b8ec5,Jacob Mowat,3 weeks ago,Release v1.0
