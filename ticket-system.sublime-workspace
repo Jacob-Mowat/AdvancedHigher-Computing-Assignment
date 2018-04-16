@@ -1,0 +1,445 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"acc",
+				"account_database"
+			],
+			[
+				"req_",
+				"req_database($database_settings)\tmixed"
+			],
+			[
+				"data",
+				"database_settings"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "lib/UserDefined.php",
+			"settings":
+			{
+				"buffer_size": 856,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Account.class.php",
+			"settings":
+			{
+				"buffer_size": 1005,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/controllers/login.controller.php",
+			"settings":
+			{
+				"buffer_size": 486,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Dont leave me",
+			"settings":
+			{
+				"buffer_size": 13,
+				"line_ending": "Unix",
+				"name": "Dont leave me"
+			}
+		},
+		{
+			"file": "lib/Renderer.class.php",
+			"settings":
+			{
+				"buffer_size": 456,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "core/setup.php",
+			"settings":
+			{
+				"buffer_size": 782,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"up",
+				"FTPSync: Upload current file"
+			],
+			[
+				"upload",
+				"FTPSync: Upload current file"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ftp",
+				"FTPSync: Upload current file"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/public/index.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/resources/templates/views/LoginForm.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/lib/Account.class.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/.htaccess",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/core/setup.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/core/config.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/lib/Renderer.class.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/resources/templates/core/header.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/tmpvminf_.ftpsync.temp",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/public/404.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/lib/controllers/login.controller.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/lib/DatabasePlug.class.php",
+		"/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment/resources/templates/pages/home.php"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "lib/UserDefined.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 856,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								579,
+								579
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 13.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/Account.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1005,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								254,
+								254
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "php"
+							},
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/controllers/login.controller.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 486,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5,
+								5
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13,
+								13
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Dont leave me",
+							"default_dir": "/Users/jacob/Desktop/AdvancedHigher-Computing-Assignment",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lib/Renderer.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 456,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								97,
+								97
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "core/setup.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								623,
+								623
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 45.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ticket-system.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 260.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
