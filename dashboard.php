@@ -109,8 +109,7 @@ getHeader();
 				$database_connection,
 				"SELECT jobs.id AS jobid, jobs.title, jobs.status, jobs.submitted_by, jobs.notes, assigned_jobs.technician_id
                 FROM jobs, assigned_jobs
-                WHERE jobs.id=assigned_jobs.job_id
-                AND jobs.submitted_by={$userid}"
+                WHERE jobs.submitted_by={$userid}"
 			);
 			?>
 			<table class="table">
