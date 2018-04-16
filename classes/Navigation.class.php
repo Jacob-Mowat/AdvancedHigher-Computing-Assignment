@@ -31,9 +31,6 @@ class Navigation {
 			<li class="nav-item">
 				<a class="nav-link" href="manager_jobpool.php">Job Pool</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="manager_listassignedjobs.php">Assigned Jobs</a>
-			</li>
 		';
 	}
 }
