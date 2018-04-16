@@ -101,9 +101,44 @@ getHeader();
 				</li>
 			</ul>
 		</div>
-		<div class="col col-sm-8 mx-auto">
-			<h2>Your jobs</h2>
-			<!-- Display jobs that teacher has sumbitted -->
+        <div class="col col-sm-8 mx-auto">
+			<h3>Your job history</h3>
+			<hr>
+			<?php
+			$jobs = mysqli_query(
+				$database_connection,
+				"SELECT jobs.id AS jobid, jobs.title, jobs.status, jobs.submitted_by, jobs.notes, assigned_jobs.technician_id
+                FROM jobs, assigned_jobs
+                WHERE jobs.id=assigned_jobs.job_id
+                AND jobs.submitted_by={$userid}"
+			);
+			?>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Title</th>
+						<th scope="col">Status</th>
+						<th scope="col">Notes</th>
+                        <th scope="col">Technician</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php while($job = mysqli_fetch_array($jobs)) {
+						$tech_username = Account::getUsernameByID($job['technician_id'], $database_connection);
+						$tech_fullname = Account::getFullnameByID($job['technician_id'], $database_connection);
+                        $note = mb_strimwidth(Job::processNotes($job['notes'])[0]['note'], 0, 20, "...");
+					?>
+					<tr class='clickable-row' data-href="<?php echo "jobs_view.php?id={$job['jobid']}";?>">
+						<th scope="row"><?=$job['jobid'];?></th>
+						<td><?=$job['title'];?></td>
+						<td><?=$job['status'];?></td>
+						<td><?=$note?></td>
+                        <td><?=$tech_username?>(<?=$tech_fullname?>)</td>
+					</tr>
+					<?php } ?>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
